@@ -75,3 +75,19 @@ router.get('/login', (req, res) => {
 });
 
 module.exports = router;
+
+function getApi() {
+  // replace `octocat` with anyone else's GitHub username
+  var requestUrl = 'http://ip-api.com/json/';
+
+  fetch(requestUrl)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      console.log(data.city);
+      console.log(data.regionName);
+    });
+  }
+
+  fetchButton.addEventListener('click', getApi);
