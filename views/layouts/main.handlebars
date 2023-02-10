@@ -11,27 +11,32 @@
 
 <body>
   <header>
-    <h1>Welcome to the Four Seasons Museum</h1>
+    <h1>ChatDown</h1>
   </header>
   <nav>
-    <a href="/">Home</a>
     {{#if loggedIn}}
     <button id="logout" class="btn-no-style">Logout</button>
     {{else}}
     <a href="/login">Login</a>
     {{/if}}
   </nav>
-  <main>
-    <aside>
-      <h2>Enjoy the galleries!</h2>
-    </aside>
+  <main>    
     <div class="gallery">
+      {{#if loggedIn}}
+   <form id="comment-form">
+      <div>
+        <input type="text" id="postOnFeed"/>
+      </div>
+      <div>
+        <button type="submit">Post</button>
+      </div>
+    </form>
+      {{/if}}
       {{{body}}}
     </div>
   </main>
-  {{#if loggedIn}}
+  <script src="/js/feed.js"></script>
   <script src="/js/logout.js"></script>
-  {{/if}}
 </body>
 
 </html>
