@@ -14,7 +14,6 @@ const sequelize = new Sequelize(
     dialectOptions: {
       socketPath: "/tmp/mysql.sock",
     },
-  }
-);
+});
 
 module.exports = sequelize;
