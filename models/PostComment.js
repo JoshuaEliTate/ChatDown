@@ -19,6 +19,13 @@ PostComment.init(
       type: DataTypes.STRING,
       allowNull: true,
     },
+    // username: {
+    //   type: DataTypes.STRING,
+    //   references: {
+    //     model: "user",
+    //     key: "username",
+    //   },
+    // },
   },
   {
     sequelize,
