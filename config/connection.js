@@ -8,12 +8,11 @@ const sequelize = new Sequelize(
   process.env.DB_PASSWORD,
 
   {
-    host: "127.0.0.1",
-    dialect: "mysql",
+    host: 'localhost',
+    dialect: 'mysql',
     port: 3306,
-    dialectOptions: {
-      socketPath: "/tmp/mysql.sock",
-    },
-});
+  }
+);
+
 
 module.exports = sequelize;
