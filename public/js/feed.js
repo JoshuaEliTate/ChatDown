@@ -1,3 +1,16 @@
+function fetchLocation() {
+  var requestUrl = 'http://ip-api.com/json/';
+
+  fetch(requestUrl)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      console.log(data.city);
+      // console.log(data.regionName);
+    });
+  }
+
 // const message = "message"
 const feed = async () => {
     event.preventDefault();
@@ -17,8 +30,16 @@ const feed = async () => {
     }
   };
 
-
+  function myFunction(){
+    fetchLocation();
+	setTimeout(() => {
+		fetchRes();
+		
+	  }, "750")
+ 	
+}
   const commentForm = document.getElementById('comment-form');
   
-  commentForm.addEventListener('submit', feed);
+  commentForm.addEventListener('submit', myFunction);
+ 
   
