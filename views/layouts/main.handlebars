@@ -23,15 +23,20 @@
   <main>    
     <div class="gallery">
       {{#if loggedIn}}
-      <input type="text" id="postOnFeed">
-      <button>Post</button>
+   <form id="comment-form">
+      <div>
+        <input type="text" id="postOnFeed"/>
+      </div>
+      <div>
+        <button type="submit">Post</button>
+      </div>
+    </form>
       {{/if}}
       {{{body}}}
     </div>
   </main>
-  {{#if loggedIn}}
+  <script src="/js/feed.js"></script>
   <script src="/js/logout.js"></script>
-  {{/if}}
 </body>
 
 </html>
