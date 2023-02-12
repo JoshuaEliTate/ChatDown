@@ -22,8 +22,8 @@ PostComment.init(
     user_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: "user",
-        key: "id",
+        model: 'user',
+        key: 'id',
       },
     },
   },
@@ -32,7 +32,7 @@ PostComment.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: "PostComment",
+    modelName: 'PostComment',
   }
 );
 
