@@ -8,6 +8,11 @@ function fetchLocation() {
     .then(function (data) {
       console.log(data.city);
       // console.log(data.regionName);
+      const response = await fetch('/api/post', {
+        method: 'POST',
+        body: JSON.stringify({ data.city }),
+        headers: { 'Content-Type': 'application/json' },
+      });
     });
   }
 
@@ -32,12 +37,8 @@ const feed = async () => {
 
   function myFunction(){
     fetchLocation();
-	setTimeout(() => {
-		fetchRes();
-		
-	  }, "750")
- 	
-}
+	  feed();
+  }
   const commentForm = document.getElementById('comment-form');
   
   commentForm.addEventListener('submit', myFunction);
