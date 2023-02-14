@@ -1,29 +1,29 @@
-const router = require('express').Router();
+const { User, PostComment } = require("../models");
+
+const router = require("express").Router();
 // const { Gallery, Painting } = require('../models');
 
 // GET all galleries for homepage
-router.get('/', async (req, res) => {
-  // try {
-  //   const dbGalleryData = await Gallery.findAll({
-  //     include: [
-  //       {
-  //         model: Painting,
-  //         attributes: ['filename', 'description'],
-  //       },
-  //     ],
-  //   });
-
-    // const galleries = dbGalleryData.map((gallery) =>
-    //   gallery.get({ plain: true })
-    // );
-    res.render('homepage', {
-      loggedIn: req.session.loggedIn,
+router.get("/", async (req, res) => {
+  PostComment.findAll({
+    attributes: ["id", "message"],
+    include: [
+      {
+        model: User,
+        attributes: ["username"],
+      },
+    ],
+  })
+    .then((dbPostData) => {
+      // pass a single post object into the homepage template
+      const posts = dbPostData.map((post) => post.get({ plain: true }));
+      res.render("homepage", { posts, loggedIn: req.session.loggedIn });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
     });
-  // } catch (err) {
-  //   console.log(err);
-  //   res.status(500).json(err);
-  // }
-  });
+});
 
 // GET one gallery
 // router.get('/gallery/:id', async (req, res) => {
@@ -66,19 +66,19 @@ router.get('/', async (req, res) => {
 // });
 
 // Login route
-router.get('/login', (req, res) => {
+router.get("/login", (req, res) => {
   if (req.session.loggedIn) {
-    res.redirect('/');
+    res.redirect("/");
     return;
   }
-  res.render('login');
+  res.render("login");
 });
 
 module.exports = router;
 
 function getApi() {
   // replace `octocat` with anyone else's GitHub username
-  var requestUrl = 'http://ip-api.com/json/';
+  var requestUrl = "http://ip-api.com/json/";
 
   fetch(requestUrl)
     .then(function (response) {
@@ -88,6 +88,6 @@ function getApi() {
       console.log(data.city);
       console.log(data.regionName);
     });
-  }
+}
 
-  // fetchButton.addEventListener('click', getApi);
+// fetchButton.addEventListener('click', getApi);
