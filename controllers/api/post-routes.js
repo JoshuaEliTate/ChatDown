@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { PostComment } = require("../../models");
+const { PostComment} = require("../../models");
 
 // CREATE new post
 router.post("/", async (req, res) => {
@@ -8,13 +8,32 @@ router.post("/", async (req, res) => {
     console.log(req.body.message);
     const postComment = await PostComment.create({
       message: req.body.message,
-      //   location: req.body.location,
+      // city: req.body.city
     });
 
     req.session.save(() => {
       req.session.loggedIn = true;
 
       res.status(200).json(postComment);
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
+router.post("/location", async (req, res) => {
+  console.log(req.body.city)
+  try {
+    console.log(req.body.city);
+    const postLocation = await PostComment.create({
+      city: req.body.city,
+    });
+
+    req.session.save(() => {
+      req.session.loggedIn = true;
+
+      res.status(200).json(postLocation);
     });
   } catch (err) {
     console.log(err);

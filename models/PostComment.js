@@ -16,12 +16,8 @@ PostComment.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    cityName: {
+    city: {
       type: DataTypes.STRING,
-      references: {
-        model: 'location',
-        key: 'city',
-      },
     },
     user_id: {
       type: DataTypes.INTEGER,
@@ -36,7 +32,7 @@ PostComment.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'postComment',
+    modelName: 'postcomment',
   }
 );
 

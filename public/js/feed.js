@@ -5,20 +5,29 @@ function fetchLocation() {
     .then(function (response) {
       return response.json();
     })
-    .then(function (data) {
+    .then(async function (data) {
       console.log(data.city);
       // console.log(data.regionName);
-      const response = await fetch('/api/post', {
+      const city = data.city
+      console.log(city);
+      const response = await fetch('/api/post/location', {
         method: 'POST',
-        body: JSON.stringify({ data.city }),
+        body: JSON.stringify({ city }),
         headers: { 'Content-Type': 'application/json' },
       });
+      // if (response.ok) {
+      //   document.location.replace('/');
+      // } else {
+      //   console.log(city)
+      //   alert('Failed to grab location.');
+      // }
     });
+
   }
 
 // const message = "message"
 const feed = async () => {
-    event.preventDefault();
+    // event.preventDefault();
     const message = document.getElementById('postOnFeed').value.trim();
     console.log(message)
     // console.log("why isnt this working", newComment)
@@ -28,14 +37,15 @@ const feed = async () => {
       headers: { 'Content-Type': 'application/json' },
     });
 
-    if (response.ok) {
-      document.location.replace('/');
-    } else {
-      alert('Failed to Post.');
-    }
+    // if (response.ok) {
+    //   document.location.replace('/');
+    // } else {
+    //   alert('Failed to Post.');
+    // }
   };
 
-  function myFunction(){
+  function myFunction(e){
+    e.preventDefault()
     fetchLocation();
 	  feed();
   }
