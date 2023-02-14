@@ -16,7 +16,7 @@ PostComment.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    city: {
+    location: {
       type: DataTypes.STRING,
     },
     user_id: {
