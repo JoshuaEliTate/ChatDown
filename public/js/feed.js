@@ -20,6 +20,12 @@ const feed = async (city) => {
       headers: { 'Content-Type': 'application/json' },
     });
 
+    if (response.ok){
+      document.location.replace('/');
+    } else {
+      alert('failed to Post')
+    }
+
   };
 
   function myFunction(e){
