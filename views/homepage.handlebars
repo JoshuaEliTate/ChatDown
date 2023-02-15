@@ -1,3 +1,13 @@
-{{#each galleries as |gallery|}}
+{{!-- {{#each galleries as |gallery|}}
 {{> gallery-details}}
-{{/each}}
+{{/each}} --}}
+
+<article class="post">
+
+    {{#each posts as |post| }}
+        {{> post-info post}}
+    {{/each}}
+
+</article>
+
+

@@ -5,39 +5,33 @@ function fetchLocation() {
     .then(function (response) {
       return response.json();
     })
-    .then(function (data) {
-      console.log(data.city);
-      // console.log(data.regionName);
+    .then(async function (data) {
+      const city = data.city
+      feed(city);
     });
   }
 
-// const message = "message"
-const feed = async () => {
-    event.preventDefault();
+const feed = async (city) => {
+
     const message = document.getElementById('postOnFeed').value.trim();
-    console.log(message)
-    // console.log("why isnt this working", newComment)
     const response = await fetch('/api/post', {
       method: 'POST',
-      body: JSON.stringify({ message }),
+      body: JSON.stringify({ message, city }),
       headers: { 'Content-Type': 'application/json' },
     });
 
-    if (response.ok) {
+    if (response.ok){
       document.location.replace('/');
     } else {
-      alert('Failed to Post.');
+      alert('failed to Post')
     }
+
   };
 
-  function myFunction(){
+  function myFunction(e){
+    e.preventDefault()
     fetchLocation();
-	setTimeout(() => {
-		fetchRes();
-		
-	  }, "750")
- 	
-}
+  }
   const commentForm = document.getElementById('comment-form');
   
   commentForm.addEventListener('submit', myFunction);
