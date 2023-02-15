@@ -1,7 +1,7 @@
 const postReply = async (buttonEl) => {
 
     
-        const replyComment = document.getElementsByClassName('replyInput').value.trim()
+        const replyComment = buttonEl.parentElement.children[0].value.trim()
         const commentId = buttonEl.getAttribute('data-comment-id')
         const response = await fetch('/api/reply', {
             method: 'POST',
@@ -23,6 +23,6 @@ function theFunction(buttonEl) {
     // postReply();
 }
 
-// const replyForm = document.getElementById('replyForm');
+// const replyForm = document.getElementsByClassName('replyForm');
 
-// replyForm.addEventListener('submit', theFunction);
+// replyForm.addEventListener('submit', postReply);
