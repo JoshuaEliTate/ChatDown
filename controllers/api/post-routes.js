@@ -1,14 +1,35 @@
 const router = require("express").Router();
+
+const Joi = require("joi");
+
 const { PostComment } = require("../../models");
+
+const schema = Joi.object({
+  message: Joi.string().trim(),
+  city: Joi.string(),
+});
 
 // CREATE new post
 router.post("/", async (req, res) => {
-  console.log(req.body.message)
+  console.log("prevalidation", req.body.message);
+  const { error, value } = schema.validate(req.body);
+  if (error) {
+    const { message } = error.details[0];
+    console.log(error.details);
+    return res.status(400).json({ error: message });
+  }
+
+  console.log("postvalidation", req.body.message);
+
+  console.log(req.body.message);
+  console.log(req.body.city);
+
   try {
+    console.log(req.body.city);
     console.log(req.body.message);
     const postComment = await PostComment.create({
       message: req.body.message,
-      //   location: req.body.location,
+      location: req.body.city,
     });
 
     req.session.save(() => {
@@ -22,73 +43,20 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.get("/", async (req, res) => {
-  try {
-    const postComment = await PostComment.findAll({});
-
-    const getData = postComment.map((postComment) =>
-      getData.get({ plain: true })
-    );
-    res.render("homepage", {
-      postComment,
-      loggedIn: req.session.loggedIn,
-    });
-  } catch (err) {
-    console.log(err);
-    res.status(500).json(err);
-  }
-});
-
-// Login
-// router.post("/login", async (req, res) => {
+// router.get("/", async (req, res) => {
 //   try {
-//     const dbUserData = await User.findOne({
-//       where: {
-//         email: req.body.email,
-//       },
-//     });
+//     const postComment = await PostComment.findAll();
 
-//     if (!dbUserData) {
-//       res
-//         .status(400)
-//         .json({ message: "Incorrect email or password. Please try again!" });
-//       return;
-//     }
-
-//     const validPassword = await dbUserData.checkPassword(req.body.password);
-
-//     if (!validPassword) {
-//       res
-//         .status(400)
-//         .json({ message: "Incorrect email or password. Please try again!" });
-//       return;
-//     }
-
-//     req.session.save(() => {
-//       req.session.loggedIn = true;
-//       console.log(
-//         "🚀 ~ file: user-routes.js ~ line 57 ~ req.session.save ~ req.session.cookie",
-//         req.session.cookie
-//       );
-
-//       res
-//         .status(200)
-//         .json({ user: dbUserData, message: "You are now logged in!" });
+//     const getData = postComment.map((postComment) =>
+//       getData.get({ plain: true })
+//     );
+//     res.render("homepage", {
+//       postComment,
+//       loggedIn: req.session.loggedIn,
 //     });
 //   } catch (err) {
 //     console.log(err);
 //     res.status(500).json(err);
-//   }
-// });
-
-// // Logout
-// router.post("/logout", (req, res) => {
-//   if (req.session.loggedIn) {
-//     req.session.destroy(() => {
-//       res.status(204).end();
-//     });
-//   } else {
-//     res.status(404).end();
 //   }
 // });
 
