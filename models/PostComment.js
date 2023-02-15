@@ -26,6 +26,10 @@ PostComment.init(
         key: 'id',
       },
     },
+    myDate: {
+      type: DataTypes.TIME,
+      defaultValue: DataTypes.NOW,
+    },
   },
   {
     sequelize,

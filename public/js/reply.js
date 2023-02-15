@@ -1,23 +1,28 @@
-const replyFunc = async () => {
+const postReply = async (buttonEl) => {
 
-    const replyComment = document.getElementById('replyInput').value.trim();
-    const response = await fetch('/api/reply', {
-        method: 'POST',
-        body: JSON.stringify({ replyComment }),
-        headers: { 'Content-Type': 'application/json' },
-    });
+    
+        const replyComment = document.getElementsByClassName('replyInput').value.trim()
+        const commentId = buttonEl.getAttribute('data-comment-id')
+        const response = await fetch('/api/reply', {
+            method: 'POST',
+            body: JSON.stringify({ replyComment, commentId }),
+            headers: { 'Content-Type': 'application/json' },
+        });
+    
+        if (response.ok) {
+            document.location.replace('/');
+        } else {
+            alert('failed to Post')
+        }
 
-    if (response.ok) {
-        document.location.replace('/');
-    } else {
-        alert('failed to Post')
-    }
+
 };
 
-function myFunction(e) {
-    e.preventDefault()
-    replyFunc();
+function theFunction(buttonEl) {
+    console.log(buttonEl.getAttribute('data-comment-id'))
+    // postReply();
 }
-const commentForm = document.getElementById('replyForm');
 
-commentForm.addEventListener('submit', myFunction);
+// const replyForm = document.getElementById('replyForm');
+
+// replyForm.addEventListener('submit', theFunction);

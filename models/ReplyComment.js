@@ -12,7 +12,7 @@ PostReply.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    replyComment: {
+    reply_comment: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -22,6 +22,10 @@ PostReply.init(
         model: 'postcomment',
         key: 'id',
       },
+    },
+    myDate: {
+      type: DataTypes.TIME,
+      defaultValue: DataTypes.NOW,
     },
   },
   {

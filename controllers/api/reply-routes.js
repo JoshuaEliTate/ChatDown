@@ -7,7 +7,8 @@ router.post("/", async (req, res) => {
   try {
     console.log(req.body.replyComment)
     const postReply = await PostReply.create({
-      replyComment: req.body.replyComment,
+      reply_comment: req.body.replyComment,
+      comment_id: req.body.commentId
     });
 
     req.session.save(() => {
@@ -20,3 +21,5 @@ router.post("/", async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+module.exports = router;
