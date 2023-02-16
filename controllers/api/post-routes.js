@@ -24,21 +24,4 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.get("/", async (req, res) => {
-  try {
-    const postComment = await PostComment.findAll({});
-
-    const getData = postComment.map((postComment) =>
-      getData.get({ plain: true })
-    );
-    res.render("homepage", "reply-info", {
-      postComment,
-      loggedIn: req.session.loggedIn,
-    });
-  } catch (err) {
-    console.log(err);
-    res.status(500).json(err);
-  }
-});
-
 module.exports = router;
