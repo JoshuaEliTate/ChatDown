@@ -5,7 +5,7 @@ const router = require("express").Router();
 router.get("/", async (req, res) => {
   try {
     const dbPostData = await PostComment.findAll({
-      attributes: ["id", "message", "location", "user_id"],
+      attributes: ["id", "message", "location", "username", "myDate"],
       include: {
         model: PostReply,
         attributes: ["id", "reply_comment", "comment_id", "postcomment_id"],
@@ -14,6 +14,8 @@ router.get("/", async (req, res) => {
 
     const posts = dbPostData.map((post) => post.get({ plain: true }));
     posts.reverse();
+
+    console.log(posts);
 
     res.render("homepage", {
       posts,
