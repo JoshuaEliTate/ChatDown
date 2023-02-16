@@ -4,11 +4,11 @@ const router = require("express").Router();
 
 router.get("/", async (req, res) => {
   PostComment.findAll({
-    attributes: ["id", "message"],
+    attributes: ["id", "message", "location", "user_id"],
     include: [
       {
         model: User,
-        attributes: ["username"],
+        attributes: ["id"],
       },
     ],
   })
@@ -31,6 +31,5 @@ router.get("/login", (req, res) => {
   }
   res.render("login");
 });
-
 
 module.exports = router;
