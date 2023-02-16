@@ -1,26 +1,36 @@
-const { User, PostComment } = require("../models");
+const { User, PostComment, PostReply } = require("../models");
 
 const router = require("express").Router();
 
 router.get("/", async (req, res) => {
-  PostComment.findAll({
-    attributes: ["id", "message", "location", "user_id"],
-    include: [
-      {
-        model: User,
-        attributes: ["id"],
-      },
-    ],
-  })
-    .then((dbPostData) => {
-      // pass a single post object into the homepage template
-      const posts = dbPostData.map((post) => post.get({ plain: true }));
-      res.render("homepage", { posts, loggedIn: req.session.loggedIn });
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
+  try {
+    const dbPostData = await PostComment.findAll({
+      attributes: ["id", "message", "location", "user_id"],
+      include: [
+        {
+          model: User,
+          attributes: ["id"],
+        },
+      ],
     });
+
+    const posts = dbPostData.map((post) => post.get({ plain: true }));
+    posts.reverse();
+
+    const dbPostData2 = await PostReply.findAll({
+      attributes: ["id", "reply_comment", "comment_id", "postcomment_id"],
+    });
+
+    const posts2 = dbPostData2.map((post) => post.get({ plain: true }));
+
+    console.log(posts);
+    console.log(posts2);
+
+    res.render("homepage", { posts, posts2, loggedIn: req.session.loggedIn });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
 });
 
 // Login route
