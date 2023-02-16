@@ -6,27 +6,19 @@ router.get("/", async (req, res) => {
   try {
     const dbPostData = await PostComment.findAll({
       attributes: ["id", "message", "location", "user_id"],
-      include: [
-        {
-          model: User,
-          attributes: ["id"],
-        },
-      ],
+      include: {
+        model: PostReply,
+        attributes: ["id", "reply_comment", "comment_id", "postcomment_id"],
+      },
     });
 
     const posts = dbPostData.map((post) => post.get({ plain: true }));
     posts.reverse();
 
-    const dbPostData2 = await PostReply.findAll({
-      attributes: ["id", "reply_comment", "comment_id", "postcomment_id"],
+    res.render("homepage", {
+      posts,
+      loggedIn: req.session.loggedIn,
     });
-
-    const posts2 = dbPostData2.map((post) => post.get({ plain: true }));
-
-    console.log(posts);
-    console.log(posts2);
-
-    res.render("homepage", { posts, posts2, loggedIn: req.session.loggedIn });
   } catch (err) {
     console.log(err);
     res.status(500).json(err);

@@ -4,7 +4,16 @@
   </div>
   <p class="card-body">{{message}}</p>
   <div class="replyForm">
-    <input type="text" class="replyInput"/>
-    <button type="submit" data-comment-id={{id}} onclick="postReply(this);">send</button>
+    <input type="text" class="replyInput" />
+    <button
+      type="submit"
+      data-comment-id={{id}}
+      onclick="postReply(this);"
+    >send</button>
   </div>
+  {{#each replies as |reply|}}
+    <div>
+      <p>{{reply.reply_comment}}</p>
+    </div>
+  {{/each}}
 </div>

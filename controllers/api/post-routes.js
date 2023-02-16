@@ -1,16 +1,16 @@
 const router = require("express").Router();
-const { PostComment} = require("../../models");
+const { PostComment } = require("../../models");
 
 // CREATE new post
 router.post("/", async (req, res) => {
-  console.log(req.body.message)
-  console.log(req.body.city)
+  console.log(req.body.message);
+  console.log(req.body.city);
   try {
-    console.log(req.body.city)
+    console.log(req.body.city);
     console.log(req.body.message);
     const postComment = await PostComment.create({
       message: req.body.message,
-      location: req.body.city
+      location: req.body.city,
     });
 
     req.session.save(() => {
@@ -24,8 +24,6 @@ router.post("/", async (req, res) => {
   }
 });
 
-
-
 router.get("/", async (req, res) => {
   try {
     const postComment = await PostComment.findAll({});
@@ -33,7 +31,7 @@ router.get("/", async (req, res) => {
     const getData = postComment.map((postComment) =>
       getData.get({ plain: true })
     );
-    res.render("homepage", {
+    res.render("homepage", "reply-info", {
       postComment,
       loggedIn: req.session.loggedIn,
     });
