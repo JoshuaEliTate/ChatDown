@@ -3,24 +3,14 @@ const Sequelize = require("sequelize");
 console.log(process.env.DB_NAME);
 
 const sequelize = new Sequelize(
-  process.env.DB_NAME,
-  process.env.DB_USER,
-  process.env.DB_PASSWORD,
-
   {
+    database: process.env.DB_NAME,
+    username: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
     host: 'localhost',
     dialect: 'mysql',
     port: 3306,
   }
 );
-
-//     host: "localhost",
-//     dialect: "mysql",
-//     port: 3306,
-//     // dialectOptions: {
-//     //   socketPath: "/tmp/mysql.sock",
-//     // },
-// });
-
 
 module.exports = sequelize;
