@@ -1,51 +1,28 @@
-<div class="row justify-space-between-md">
-  <div class="login-card">
-    <h2 class="page-title">Login</h2>
-    <form class="form login-form">
-      <div class="form-group">
-        <label for="email-login">Email:</label>
-        <input class="form-input" type="text" id="email-login" />
-      </div>
-      <div class="form-group">
-        <label for="password-login">Password:</label>
-        <input class="form-input" type="password" id="password-login" />
-      </div>
-      <div class="form-group">
-        <button class="btn btn-primary" type="submit">login</button>
-      </div>
+<div class="float-container">
+  <div class="float-child-left">
+    <div class="welcome-back"> Create an account</div>
+    <h2 class="login-instructions">Please enter your details!</h2>
+    <form class="signup-form">
+      <label for="email-login" class="text-input-label">Email</label>
+      <input class="text-input" type="text" id="email-signup" />
+      <label for="email-login" class="text-input-label">Username</label>
+      <input class="text-input" type="text" id="username-signup" />
+      <label for="password-login" class="text-input-label">Password</label>
+      <input class="text-input" type="password" id="password-signup" />
+      <button class="form-button" type="submit">Sign up</button>
     </form>
   </div>
-  <div class="login-card">
-    <h2 class="page-title">Signup</h2>
-    <form class="form signup-form">
-      <div class="form-group">
-        <label for="username-signup">Username:</label>
-        <input class="form-input" type="text" id="username-signup" />
-      </div>
-      <div class="form-group">
-        <label for="email-signup">Email:</label>
-        <input class="form-input" type="text" id="email-signup" />
-      </div>
-      <div class="form-group">
-        <label for="password-signup">Password:</label>
-        <input class="form-input" type="password" id="password-signup" />
-      </div>
-      <div class="form-group">
-        <button class="btn btn-primary" type="submit">signup</button>
-      </div>
+  <div class="float-child-right">
+    <div class="welcome-back">Welcome back</div>
+    <h2 class="login-instructions">Please enter your details!</h2>
+    <form class="login-form">
+      <label for="email-login" class="text-input-label">Email or Username</label>
+      <input class="text-input" type="text" id="email-login" />
+      <label for="password-login" class="text-input-label">Password</label>
+      <input class="text-input" type="password" id="password-login" />
+      <button class="form-button" type="submit">Login</button>
     </form>
   </div>
 </div>
 
 <script src="./js/login.js"></script>
-
-
-
-    {{!-- <form class="comment-form">
-      <div>
-        <input type="text" id="postOnFeed"/>
-      </div>
-      <div>
-        <button type="submit">Post</button>
-      </div>
-    </form> --}}
