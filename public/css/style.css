@@ -1,7 +1,7 @@
 :root {
   --primary: #3d5852;
   --secondary: #86938f;
-  --tertiary: #5e877f;
+  --tertiary: #475E9F;
   --quatrinary: #6c6b67;
   --light: #e3e4e3;
   --dark: #182c23;
@@ -20,7 +20,6 @@ body {
 }
 
 a {
-  color: var(--dark);
   text-decoration: none;
 }
 
@@ -30,9 +29,17 @@ a:visited {
 
 header {
   padding: 40px;
-  text-align: center;
-  background: var(--primary);
-  color: var(--light);
+  text-align: right;
+  background: var(--tertiary);
+}
+
+.login-text {
+  color:#FFFFFF;
+}
+
+.logout-text {
+  color: #B6D4FF;
+  padding-left: 10px;
 }
 
 main {
@@ -51,25 +58,25 @@ aside {
 
 nav {
   display: flex;
-  background-color: var(--secondary);
+  text-align: right;
+  display: block;
+  max-height: 109px;
+  color: white;
 }
 
 nav a {
-  color: var(--light);
-  padding: 14px 20px;
   text-decoration: none;
-  text-align: center;
+  text-align: right;
 }
 
 nav a:hover {
-  color: var(--secondary);
-  background-color: var(--dark);
+  color: var(--light);
+  text-decoration: none;
 }
 
 .gallery {
   flex: 4;
-  background-color: #fff;
-  padding: 50px;
+  background-color: #EFEFEF;
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
@@ -107,12 +114,9 @@ img {
 
 /* CARDS */
 .card {
-  margin: 20px;
-  flex: 0 1 300px;
-  border: 7px double var(--dark);
-  border-radius: 10px;
-  background-color: var(--light);
-  color: var(--dark);
+  background: white;
+  border-radius: 20px;
+  margin: 40px;
 }
 
 .login-card {
@@ -128,18 +132,12 @@ img {
   color: var(--light);
 }
 
-.card header {
-  color: var(--light);
-  font-weight: bold;
+.card-header {
+  padding: 10px;
   text-transform: uppercase;
-  margin: 0;
-  background-color: var(--tertiary);
-  padding: 0.625rem;
-  border-radius: calc(0.18rem - 1px) calc(0.18rem - 1px) 0 0;
 }
 
 .card-body {
-  font-size: 1.4rem;
   text-align: center;
   font-weight: bold;
 }
@@ -162,3 +160,129 @@ img {
   align-content: flex-start;
   align-items: center;
 }
+
+
+/* login-page layout */
+.float-container {
+  width: 100%;
+  height: 100%;
+  background: white;
+}
+.float-child-left {
+  width: 50%;
+  height: 100%;
+  float: left;
+  padding: 50px;
+  background: #EFEFEF;
+} 
+
+.float-child-right {
+  width: 50%;
+  height: 100%;
+  float: left;
+  padding: 50px;
+} 
+
+/* right side --- login  */
+.welcome-back{
+  font-style: normal;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 68px;
+  display: flex;
+  align-items: center;
+  color: #000000;
+}
+.login-instructions{
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 34px;
+  display: flex;
+  align-items: center;
+  color: #929292;
+}
+.text-input-label{
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  color: #000000;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.text-input {
+  box-sizing: border-box;
+  width: 100%;
+  height: 38px;
+  border: 1px solid #929292;
+  border-radius: 10px;
+}
+
+.form-button {
+  margin-top: 50px;
+  width: 100%;
+  height: 38px;
+  background: #475E9F;
+  border-radius: 10px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  color: #FFFFFF;
+  border: none;
+}
+
+.post-wrapper {
+  width: 100%;
+  position: relative;
+  display: block;
+  margin: 40px;
+  text-align: right;
+  background: white;
+  border-radius: 20px;
+}
+
+.post-form {
+  width: 100%;
+  position: relative;
+}
+
+.post-input {
+  margin: 20px;
+  height: 38px;
+  border: 1px solid #929292;
+  border-radius: 10px;
+}
+
+.post-input, textarea { background: #EFEFEF; }
+
+.post-input, ::placeholder { 
+  padding: 10px;
+  font-style: normal;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  color: #929292;
+}
+
+.post-button {
+  margin: 10px;
+  width: 60px;
+  height: 38px;
+  background: #475E9F;
+  border-radius: 10px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  color: #FFFFFF;
+  border: none;
+}
+
+.post {
+  position: relative;
+  width: 100%;
+}
+
+
