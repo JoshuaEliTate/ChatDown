@@ -1,9 +1,10 @@
-const { Model, DataTypes } = require("sequelize");
-const sequelize = require("../config/connection");
+const { Model, DataTypes } = require('sequelize');
+const sequelize = require('../config/connection');
 
-class PostComment extends Model {}
 
-PostComment.init(
+class PostReply extends Model {}
+
+PostReply.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -11,22 +12,16 @@ PostComment.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    message: {
+    reply_comment: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    location: {
-      type: DataTypes.STRING,
-    },
-    user_id: {
+    comment_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: "user",
-        key: "id",
+        model: 'postcomment',
+        key: 'id',
       },
-    },
-    username: {
-      type: DataTypes.STRING,
     },
     myDate: {
       type: DataTypes.TIME,
@@ -38,8 +33,8 @@ PostComment.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: "postcomment",
+    modelName: 'reply',
   }
 );
 
-module.exports = PostComment;
+module.exports = PostReply;

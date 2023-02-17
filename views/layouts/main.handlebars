@@ -1,42 +1,54 @@
-<!DOCTYPE html>
 <html lang="en">
+
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Museum</title>
+  <title>ChatDown</title>
   <link rel="stylesheet" type="text/css" href="/css/jass.css">
   <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 
 <body>
   <header>
-    <h1>ChatDown</h1>
+    <nav>
+      {{#if loggedIn}}
+      <a id="logout" class="logout-text">Logout</a>
+      {{else}}
+      <a href="/login" class="login-text">Login</a>
+      {{/if}}
+    </nav>
   </header>
-  <nav>
-    {{#if loggedIn}}
-    <button id="logout" class="btn-no-style">Logout</button>
-    {{else}}
-    <a href="/login">Login</a>
-    {{/if}}
-  </nav>
   <main>    
     <div class="gallery">
-      {{#if loggedIn}}
-   <form id="comment-form">
-      <div>
-        <input type="text" id="postOnFeed"/>
+      {{!-- {{#if loggedIn}}
+      <div class="post-wrapper">
+        <form class="post-form">
+          <input class="post-input" type="text" id="postOnFeed" placeholder="Whats on your mind?"/>
+          <button type="submit" class="post-button">Post</button>
+        </form>
       </div>
-      <div>
-        <button type="submit">Post</button>
+
+      {{/if}} --}}
+    </nav>
+    <main>
+      <div class="gallery">
+        {{#if loggedIn}}
+          <form id="comment-form" class="post-form">
+            <div>
+              <input type="text" id="postOnFeed" class="post-input" placeholder="Whats on your mind?"/>
+            </div>
+            <div>
+              <button type="submit" class="post-button">Post</button>
+            </div>
+          </form>
+        {{/if}}
+        {{{body}}}
       </div>
-    </form>
-      {{/if}}
-      {{{body}}}
-    </div>
-  </main>
-  <script src="/js/feed.js"></script>
-  <script src="/js/logout.js"></script>
-</body>
+    </main>
+    <script src="/js/feed.js"></script>
+    <script src="/js/logout.js"></script>
+     <script src="/js/reply.js"></script>
+  </body>
 
 </html>

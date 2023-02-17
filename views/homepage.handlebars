@@ -1,12 +1,17 @@
-{{!-- {{#each galleries as |gallery|}}
-{{> gallery-details}}
-{{/each}} --}}
-
 <article class="post">
 
-    {{#each posts as |post| }}
+        {{#each posts as |post| }}
         {{> post-info post}}
-    {{/each}}
+
+        {{/each}}
+
+
+       {{#each replies as |replies|}}
+        {{> reply-info replies}}
+        {{/each}}
+        
+
+        
 
 </article>
 
