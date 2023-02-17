@@ -21,7 +21,7 @@
   </header>
   <main>    
     <div class="gallery">
-      {{#if loggedIn}}
+      {{!-- {{#if loggedIn}}
       <div class="post-wrapper">
         <form class="post-form">
           <input class="post-input" type="text" id="postOnFeed" placeholder="Whats on your mind?"/>
@@ -29,17 +29,17 @@
         </form>
       </div>
 
-      {{/if}}
+      {{/if}} --}}
     </nav>
     <main>
       <div class="gallery">
         {{#if loggedIn}}
-          <form id="comment-form">
+          <form id="comment-form" class="post-form">
             <div>
-              <input type="text" id="postOnFeed" />
+              <input type="text" id="postOnFeed" class="post-input" placeholder="Whats on your mind?"/>
             </div>
             <div>
-              <button type="submit">Post</button>
+              <button type="submit" class="post-button">Post</button>
             </div>
           </form>
         {{/if}}
