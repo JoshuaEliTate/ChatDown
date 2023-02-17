@@ -5,9 +5,9 @@ const { PostComment } = require("../../models");
 router.post("/", async (req, res) => {
   let city = "";
   const newCity = function fetchLocation() {
-    // var requestUrl = "http://ip-api.com/json/";
-    var requestUrl = `http://ip-api.com/json/${req.ip}`
-      console.log(req.ip)
+    var requestUrl = "http://ip-api.com/json/";
+    // var requestUrl = `http://ip-api.com/json/${req.ip}`
+      // console.log(req.ip)
     fetch(requestUrl)
       .then(function (response) {
         return response.json();
