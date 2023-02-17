@@ -1,5 +1,5 @@
 function fetchLocation() {
-  var requestUrl = 'http://ip-api.com/json/';
+  var requestUrl = 'https://ip-api.com/json/';
 
   fetch(requestUrl)
     .then(function (response) {
